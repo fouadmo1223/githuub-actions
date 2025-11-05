@@ -1,0 +1,36 @@
+name: push-br
+
+on:
+  push:
+    branches:
+      - main
+      - "release/**"
+    # Trigger on main and any release brances
+    paths:
+      - "src/**"
+      - package.json
+      # detrmine when it runs when the files in what dir chnages
+
+  pull_request:
+    branches:
+      - main
+      - "release/**"
+    # Trigger on main and any release brances
+    paths:
+      - "src/**"
+      - package.json
+      # detrmine when it runs when the files in what dir chnag
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+        # uses for using github action
+        # run for making cli commands
+      - name: Run Tests
+        run: |
+          echo "Running tests..."
+          npm test
