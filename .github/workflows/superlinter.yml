@@ -40,10 +40,7 @@ jobs:
           # ✅ Required token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-          # ✅ Disable unnecessary linters to avoid false errors
-          VALIDATE_CHECKOV: false
-          VALIDATE_TERRAFORM: false
-          VALIDATE_DOCKERFILE: false
+      
 
           # ✅ Enable common web/project linters
           VALIDATE_JAVASCRIPT_ES: true
