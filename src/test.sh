@@ -1,14 +1,16 @@
-
 #!/bin/bash
-# Simple test script for greet.js
+# Simple test script for src/app.js
 
-# Exit if any command fails
+# Stop the script on any error
 set -e
 
-echo "Running test for greet.js..."
+echo "Running test for src/app.js..."
 
-# Run the file directly to ensure it works
-node greet.js > output.txt
+# Go to the script directory (important for CI)
+cd "$(dirname "$0")"
+
+# Run the Node app and capture output
+node app.js > output.txt
 
 # Check if output contains expected text
 if grep -q "Hello, World!" output.txt; then
