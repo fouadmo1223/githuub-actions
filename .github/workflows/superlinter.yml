@@ -5,11 +5,22 @@ on:
     branches:
       - main
       - master
+  pull_request:
+    branches:
+      - main
+      - master
 
 jobs:
   lint:
     name: Lint Code Base
     runs-on: ubuntu-latest
+
+    # ✅ Fix 403 permission issue
+    permissions:
+      contents: read
+      statuses: write
+      checks: write
+      pull-requests: write
 
     steps:
       - name: Checkout code
@@ -20,5 +31,25 @@ jobs:
       - name: Run Super-Linter
         uses: github/super-linter@v6
         env:
+          # ✅ Scan entire codebase
+          VALIDATE_ALL_CODEBASE: true
+
+          # ✅ Set default branch
           DEFAULT_BRANCH: main
+
+          # ✅ Required token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # ✅ Disable unnecessary linters to avoid false errors
+          VALIDATE_CHECKOV: false
+          VALIDATE_TERRAFORM: false
+          VALIDATE_DOCKERFILE: false
+
+          # ✅ Enable common web/project linters
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_TYPESCRIPT_ES: true
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_JSON: true
+          VALIDATE_MARKDOWN: true
+          VALIDATE_YAML: true
