@@ -1,0 +1,16 @@
+name: Scheduled Process
+
+on: 
+  schedule:
+    - cron: "5 2 * 6 * " # min hour day month day-of-week (June at 02:05 UTC daily)
+
+jobs:
+  scheduled-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Scheduled Task
+        run: echo "This task runs every day at 02:05 UTC in June."
