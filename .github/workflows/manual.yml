@@ -2,6 +2,19 @@ name: Manual Triggred
 
 on :
   workflow_dispatch:
+    inputs:
+      name:
+        description: "Enter your name"
+        required: true
+      environment:
+        description: "Select the environment"
+        required: true
+        default: "production"
+        type: choice
+        options:
+          - production
+          - staging
+          - development
 
 jobs:
   manual-job:
