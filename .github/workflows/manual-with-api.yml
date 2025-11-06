@@ -1,0 +1,16 @@
+name : Manual Triggered with API
+
+on :
+  repository_dispatch:
+    types: [ manual-trigger-with-api ]
+
+jobs:
+  api-manual:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Run API Manual Task
+        run: echo "This task was triggered via API."
